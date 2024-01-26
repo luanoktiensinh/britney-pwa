@@ -139,7 +139,7 @@
     "sharp": "~0.29.3"
   },
   "engines": {
-    "node": "16.5.0",
+    "node": "16.x",
     "yarn": ">=1.12.0"
   },
   "pwa-studio": {
