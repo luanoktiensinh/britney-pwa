@@ -1,0 +1,34 @@
+.megaMenuItem {
+    composes: pr-[28px] from global;
+    composes: last_pr-0 from global;
+}
+
+.megaMenuLink {
+    composes: text-[15px] from global;
+    composes: text-black from global;
+    composes: font-bold from global;
+    composes: block from global;
+    composes: px-0 from global;
+    composes: pt-[13px] from global;
+    composes: p-[9px] from global;
+    composes: border-b-4 from global;
+    composes: border-solid from global;
+    composes: border-transparent from global;
+}
+
+.megaMenuLinkActive {
+    composes: megaMenuLink;
+    composes: text-primary-500 from global;
+    composes: border-current from global;
+}
+
+.megaMenuItem_active {
+    composes: megaMenuItem;
+    composes: flex from global;
+}
+
+.arrowDown {
+    composes: leading-[0] from global;
+    composes: pl-2xs from global;
+}
+

@@ -1,0 +1,18 @@
+@use 'sass:math';
+
+$gutter: 3.2rem;
+
+$w-mini-cart: 18.125 * $gutter;
+
+$ratio-learn-hero: math.div(599, 1328);
+$ratio-related-img-desktop: math.div(296, 1920);
+$ratio-related-img-mobile: math.div(200, 375);
+
+
+@function rem2px($remValue) {
+    @return calc($remValue / 1rem) * $remBase;
+}
+
+@function px2rem($px) {
+    @return calc(($px / $remBase) * 1rem);
+}

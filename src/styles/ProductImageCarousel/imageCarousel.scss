@@ -1,0 +1,95 @@
+.thumb-slider {
+    position: relative;
+    .slick-slider {
+        margin: 0 -16px;
+        transform: translateY(-10px);
+    }
+    .slick-list {
+        max-height: 480px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        &::-webkit-scrollbar-track {
+            background-color: #f5f5f5;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        &::-webkit-scrollbar {
+            background-color: #f5f5f5;
+            width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: #8a8a8a;
+            border-radius: 5px;
+        }
+        .slick-track {
+            -webkit-transform: translate3d(0, 0, 0) !important;
+            transform: translate3d(0, 0, 0) !important;
+            height: auto !important;
+        }
+    }
+    .slick-slide {
+        padding: 10px 0;
+        visibility: visible;
+        border: 0;
+        img {
+            width: 100%;
+        }
+        &.slick-current {
+            .thumb-slider--button {
+                &:after {
+                    border-color: #4d4d4d;
+                }
+            }
+        }
+    }
+    .thumb-slider--button {
+        width: 100%;
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent
+        }
+    }
+}
+.carousel-root-dialog {
+    .main-slider {
+        .slick-slide {
+            img {
+                height: 500px;
+                max-height: calc(100vh - 332px);
+            }
+        }
+    }
+    .slick-slider {
+        position: static;
+    }
+    .thumb-slider {
+        .slick-slider {
+            img {
+                width: 100px;
+                height: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                object-fit: contain;
+            }
+        }
+    }
+}
+.pdp-carousel-btn {
+    display: none;
+}
+[class*="lightbox-dialog"] {
+    .thumb-slider {
+        .slick-list {
+            min-height: auto;
+        }
+    }
+    .pdp-carousel-btn {
+        display: block;
+    }
+}

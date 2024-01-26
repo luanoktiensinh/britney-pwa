@@ -1,0 +1,297 @@
+@import "./_colors.scss";
+@import "./_breakpoints.scss";
+@import "./_base.scss";
+@import "./_z-index.scss";
+@import "./_font-sizes.scss";
+
+
+.bn-dialog {
+    &[dropdown-panel] {
+        max-height: var(--app-height, 100vh);
+        height: 100vh;
+        overflow: auto;
+        width: 100vw;
+        position: fixed;
+        display: none;
+        background: rgba(0, 0, 0, 0.7);
+        align-items: center;
+        justify-content: center;
+        z-index: calc($z-select-listbox - 1);
+        color: $neutral-900;
+        top: 0;
+        left: 0;
+        overscroll-behavior: contain;
+        
+        @include respond-to-max($tabletSize) {
+            align-items: end;
+        }
+        &.show {
+            display: grid;
+            @include respond-to-max($desktopSize) {
+                min-height: calc(var(--app-height, 100vh) + var(--app-offset-top, 0px));
+            }
+        }
+    }
+
+    [dropdown-panel-container] {
+        background: $white;
+        margin: auto;
+        //set width for dialog content here
+    }
+
+    // @include respond-to-max($desktopSize) {
+    //     [close-dropdown] {
+    //         outline: none;
+    //     }
+    // }
+
+    &-container {
+        width: 100vw;
+        @include respond-to-min($tabletSize) {
+            width: 60vw;
+            margin: $gutter auto;
+        }
+    }
+
+    &__header {
+        position: relative;
+        box-shadow: inset 0px -1px 0px $primary-border-color;
+        line-height: 2.8rem;
+        display: flex;
+        .svg-close {
+            cursor: pointer;
+            position: absolute;
+            right: $gutter * 0.75;
+            top: $gutter * 0.625;
+            @include respond-to-max($desktopSize) {
+                top: $gutter * 0.5;
+                right: $gutter * 0.5;
+            }
+            use {
+                pointer-events: none;
+            }
+        }
+
+        button[close-dropdown] {
+            border: none;
+            background: transparent;
+        }
+    }
+    &__title {
+        padding: 2rem $gutter * 2 2rem $gutter;
+        @include respond-to-min($desktopSize) {
+            font-size: 2.3rem;
+        }
+        @include respond-to-max($desktopSize) {
+            padding: $gutter * 0.5 $gutter * 1.5 $gutter * 0.5 $gutter * 0.5;
+            font-size: $font-size--medium;
+        }
+        font-weight: bold;
+        &-product {
+            display: flex;
+            align-items: flex-start;
+            background: $light-brown;
+            line-height: normal;
+            margin-bottom: 1px;
+            &--image {
+                min-width: 6.5rem;
+                max-width: 6.5rem;
+                height: 6.5rem;
+                margin-right: $gutter * 0.5;
+                border: 1px solid $primary-100;
+                padding: 0.5rem;
+                background: $white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                @include respond-to-max($desktopSize) {
+                    padding: 0.5rem;
+                    min-width: 8.5rem;
+                    max-width: 8.5rem;
+                    height: 8.5rem;
+                    margin-right: $gutter * 0.375;
+                }
+                img {
+                    width: 100%;
+                    font-size: $font-size--small;
+                }
+            }
+            &--title {
+                a {
+                    color: $neutral-900;
+                    letter-spacing: .2px;
+                    display: inline-block;
+                    @include respond-to-max($desktopSize) {
+                        letter-spacing: 0;
+                        font-size: $font-size--normal;
+                    }
+                }
+            }
+        }
+    }
+    &__body {
+        display: flex;
+        flex-direction: column;
+        padding: $gutter;
+        position: relative;
+        overscroll-behavior: contain;
+        @include respond-to-max($desktopSize) {
+            padding: $gutter * 0.75 $gutter * 0.5 $gutter
+        }
+        button ~ button {
+            margin-top: $gutter * 0.5;
+        }
+        .svg-close {
+            cursor: pointer;
+            position: absolute;
+            right: $gutter * 0.5;
+            top: $gutter * 0.5;
+            use {
+                pointer-events: none;
+            }
+        }
+    }
+
+    &--confirm {
+        .bn-dialog-container {
+            @include respond-to-min($tabletSize) {
+                max-width: 51.2rem;
+            }
+            @include respond-to-max($tabletSize) {
+                max-width: 100%;
+            }
+        }
+
+        .bn-dialog__body {
+            &-content {
+                margin-bottom: $gutter;
+                white-space: pre-line;
+            }
+        }
+    }
+
+    &--normal {
+        @include respond-to-max($tabletSize) {
+            .bn-dialog {
+                &__header {
+                    line-height: 5.5rem;
+                    min-height: 5.5rem;
+                    background: $accent-gray;
+                    box-shadow: none;
+                    border-bottom: solid 1px $brownell-tan-300;
+                    .close-btn {
+                        top: $gutter * 0.5;
+                        right: $gutter * 0.5;
+                    }
+                }
+
+                &__title {
+                    padding: 0 $gutter * 0.5;
+                    font-size: $font-size--large;
+                }
+
+                &__body {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    @include respond-to-min($tabletSize) {
+        &--md .bn-dialog-container {
+            max-width: 51.2rem;
+        }
+
+        &--lg .bn-dialog-container {
+            max-width: 129.4rem;
+        }
+    }
+}
+
+.dialog-login {
+    &[dropdown-panel] {
+        max-height: unset;
+        z-index: calc($z-loading + 1);
+        overscroll-behavior: none;
+    }
+
+    .login__account__start .btn {
+        @include respond-to-min($tabletSize) {
+            min-width: unset;
+            width: unset;
+        }
+
+        @include respond-to-min($laptopSize) {
+            min-width: 35.2rem;
+            width: auto;
+        }
+    }
+    
+    .bn-dialog-container {
+        position: relative;
+        max-width: 77.3rem;
+
+        @include respond-to-max($tabletSize) {
+            margin: auto;
+            overflow: auto;
+        }
+
+        @include respond-to-min($tabletSize) {
+            padding: 0.25 * $gutter;
+            min-height: 82rem;
+        }
+
+        @include respond-to-min-max($tabletSize, $laptopSize) {
+            width: 62rem;
+        }
+
+        .bn-dialog__body {
+            padding: 0;
+        }
+    }
+
+    [close-dropdown] {
+        position: absolute;
+        top: 0.5 * $gutter;
+        right: 0.5 * $gutter;
+        color: $neutral-800;
+        font-size: $font-size--small;
+        line-height: 1.8;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        background: transparent;
+        border: 0;
+        text-transform: uppercase;
+
+        @include respond-to-max($tabletSize) {
+            padding: 0;
+
+        }
+        
+        svg {
+            width: 2.4rem;
+            height: 2.4rem;
+
+            @include respond-to-max($tabletSize) {
+                margin-left: 0.9rem;
+            }
+        }
+
+        span {
+            display: none;
+        }
+    }
+
+    .icon-add-favorite {
+        color: $primary-brownell;
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+}
+
+@include only-touch-devices {
+    [dropdown-cursor] {
+        outline: none;
+    }
+}

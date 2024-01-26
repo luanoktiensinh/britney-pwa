@@ -1,0 +1,15 @@
+.root {
+    composes: text-sm from global;
+    composes: pb-2 from global;
+    composes: font-bold from global;
+}
+
+/* TODO @TW: cannot compose */
+.root:empty {
+    display: none;
+}
+
+.root_error {
+    composes: root;
+    composes: text-errors-500 from global;
+}

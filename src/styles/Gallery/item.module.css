@@ -1,0 +1,72 @@
+.root {
+    composes: flex from global;
+    composes: flex-col from global;
+    composes: content-start from global;
+    composes: gap-y-2xs from global;
+}
+.actionsContainer {
+    composes: gap-x-xs from global;
+    composes: grid from global;
+    composes: pl-2xs from global;
+    grid-template-columns: auto 20px 20px;
+    margin-top: auto;
+}
+
+.name {
+    composes: h-8 from global;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.finalPrice {
+    composes: text-[14px] from global;
+    composes: mb-4 from global;
+}
+
+.simplePrice {
+    composes: text-[14px] from global;
+    composes: mb-4 from global;
+}
+
+.boldPrice {
+    composes: font-bold from global;
+    composes: ml-1 from global;
+    font-family: "franklin-gothic-urw", sans-serif;
+}
+
+.regularPrice {
+    composes: text-[14px] from global;
+    composes: line-through from global;
+}
+
+.invisiblePrice {
+    composes: text-[14px] from global;
+    composes: line-through from global;
+    composes: invisible from global;
+}
+
+.finalPricePdp {
+    composes: mb-2 from global;
+}
+
+.regularPricePdp {
+    composes: line-through from global;
+}
+
+.invisiblePricePdp {
+    composes: d-none from global;
+}
+
+@media (max-width: 959px) {
+    .finalPrice {
+        margin-top: 8px;
+    }
+    .regularPrice {
+        margin-bottom: 8px;
+    }
+    .starIcons {
+        margin-top: 8px;
+    }
+}

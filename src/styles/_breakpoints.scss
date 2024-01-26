@@ -1,0 +1,132 @@
+//https://zellwk.com/blog/media-query-units/
+
+$mobileBasic:           320px;
+$phonePortrait:         480px;
+$maxMobileContainerSize:576px;
+$phoneLandscape:        640px;
+$tabletSize:            768px;
+$desktopSize:           959px;
+$laptopSize:            1280px;
+$defaultDesktopSize:    1400px;
+$largeDesktopSize:      1750px;
+$fullHDSize:            1920px;
+$maxContainerSize:      1632px;
+$learnContainerSize:    1360px;
+
+$breakpoints: (
+    phone : $phonePortrait,
+    tablet : $tabletSize,
+    desktop: $desktopSize,
+    laptop: $laptopSize,
+    default-desktop: $defaultDesktopSize,
+    large-desktop: $largeDesktopSize,
+    full-hd: $fullHDSize
+);
+
+// pass a map or 2 maps to this function to leverage the values in ways other than as just a value for a property
+
+// list of variables that are available when you use this mixin
+$responsive-variable: 0 !default; // value from the first map you pass
+$responsive-variable-2: 0 !default; // value from the second map you pass
+$responsive-breakpoint: 0 !default; // value of the breakpoint at each breakpoint
+
+@mixin responsive-context($map, $map2: null, $all-breakpoints: false) {
+    // preventing unnecessary lines in the compiled css
+    $_responsive-variable-last: null !global;
+    $_responsive-variable-next: null !global;
+    $_responsive-variable-2-last: null !global;
+    $_responsive-variable-2-next: null !global;
+
+    @each $breakpoint, $amount in $map {
+        // create version that outputs all breakpoints even if there's no change in value
+        @if $all-breakpoints == true {
+            $_responsive-variable-last: "x" !global;
+            $_responsive-variable-2-last: "x" !global;
+        }
+
+        $_responsive-variable-next: $amount !global;
+        $responsive-variable: $amount !global;
+        $responsive-breakpoint: $breakpoint !global;
+
+        @if $map2 != null {
+            $responsive-variable-2: map-get($map2, $breakpoint) !global;
+        }
+
+        @else {
+            $responsive-variable-2: 0 !global;
+        }
+
+        $_responsive-variable-2-next: $responsive-variable-2 !global;
+
+        @if $breakpoint == null {
+            @content;
+        }
+
+        @else if ($_responsive-variable-last != $_responsive-variable-next) or ($_responsive-variable-2-last != $_responsive-variable-2-next) {
+            @if map-has-key($breakpoints, $breakpoint) {
+                $breakpoint: map-get($breakpoints, $breakpoint);
+            }
+
+            @media screen and (min-width: $breakpoint) {
+                @content;
+            }
+        }
+
+        $_responsive-variable-last: $_responsive-variable-next !global;
+        $_responsive-variable-2-last: $_responsive-variable-2-next !global;
+    }
+}
+
+@mixin respond-to-min($width) {
+    @media only screen and (min-width: $width) {
+        @content;
+    }
+}
+
+@mixin respond-to-max($width) {
+    @media only screen and (max-width: $width - 1px) {
+        @content;
+    }
+}
+
+@mixin respond-to-min-max($min-width, $max-width) {
+    @media only screen and (min-width: $min-width) and (max-width: $max-width - 1px) {
+        @content;
+    }
+}
+
+@mixin respond-to-min-orientation($width, $orientation) {
+    @media only screen and (min-width: $width) and (orientation: $orientation) {
+        @content;
+    }
+}
+
+@mixin respond-to-max-orientation($width, $orientation) {
+    @media only screen and (max-width: $width - 1px) and (orientation: $orientation) {
+        @content;
+    }
+}
+
+@mixin respond-to-min-max-orientation($min-width, $max-width, $orientation) {
+    @media only screen and (min-width: $min-width) and (max-width: $max-width - 1px) and (orientation: $orientation) {
+        @content;
+    }
+}
+
+@mixin respond-to-ipad($orientation, $retina) {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: $orientation) and (-webkit-min-device-pixel-ratio: $retina) {
+        @content
+    }
+}
+
+@mixin only-touch-devices {
+    @media (hover: none) and (pointer: coarse) {
+        @content;
+    }
+}
+
+@mixin only-desktop-devices {
+    @media (hover: hover) and (pointer: fine) {
+        @content;
+    }
+}

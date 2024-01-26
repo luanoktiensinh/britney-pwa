@@ -1,0 +1,17 @@
+.megaMenuRoot {
+    composes: relative from global;
+    composes: flex from global;
+    composes: justify-center from global;
+}
+.megaMenu {
+    composes: max-w-site from global;
+    composes: w-full from global;
+    composes: flex-grow from global;
+    composes: hidden from global;
+    composes: justify-self-center from global;
+}
+
+/* Large screen styles */
+.megaMenu {
+    composes: lg_flex from global;
+}

@@ -1,0 +1,57 @@
+.root {
+    composes: relative from global;
+    composes: inline-block from global;
+    composes: align-middle from global;
+    composes: w-[112px] from global;
+    composes: star-icons-root from global;
+}
+
+.root::before {
+    -webkit-font-smoothing: antialiased;
+    font-family: luma-icons;
+    font-size: 24px;
+    height: 24px;
+    letter-spacing: 2px;
+    content: '\2605' '\2605' '\2605' '\2605' '\2605';
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    color: #c7c7c7;
+}
+
+.wrapper {
+    composes: block from global;
+    composes: overflow-hidden from global;
+}
+
+.wrapper:before {
+    position: relative;
+    z-index: 2;
+    color: #ff5501;
+    -webkit-font-smoothing: antialiased;
+    font-family: luma-icons;
+    font-size: 24px;
+    height: 24px;
+    letter-spacing: 2px;
+    content: '\2605' '\2605' '\2605' '\2605' '\2605';
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.content {
+    composes: block from global;
+    composes: absolute from global;
+    composes: overflow-hidden from global;
+    composes: p-0 from global;
+    composes: h-px from global;
+    composes: w-px from global;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+}

@@ -1,0 +1,12 @@
+.root {
+    composes: border from global;
+    composes: border-solid from global;
+    composes: border-gray-300 from global;
+    composes: p-px from global;
+    box-shadow: 0 0 0 1px #ffffff;
+    composes: w-full from global;
+}
+.rootSelected {
+    composes: root;
+    composes: border-gray-800 from global;
+}

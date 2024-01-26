@@ -1,0 +1,5 @@
+@import "../../main.scss";
+
+.slick-initialized .slick-slide {
+    visibility: unset !important;
+}

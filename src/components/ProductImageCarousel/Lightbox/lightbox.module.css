@@ -1,0 +1,48 @@
+.form {
+    composes: content-stretch from global;
+    composes: grid from global;
+    composes: h-full from global;
+    composes: justify-center from global;
+    composes: w-full from global;
+    composes: content-center from global;
+}
+.dialog {
+    /* It sets maximum sizes so its body can handle overflow. */
+    composes: h-screen from global;
+    /* Minimum keeps a 16:9 aspect ratio and is 40rem x 22.5rem.  */
+    composes: w-screen from global;
+    composes: bg-white from global;
+    composes: grid from global;
+    composes: grid-rows-autoFirst from global;
+    composes: overflow-hidden from global;
+    composes: pointer-events-auto from global;
+    composes: shadow-dialog from global;
+    composes: z-dialog from global;
+    max-height: calc(100vh - 64px);
+    max-width: 1170px;
+}
+.body {
+    composes: overflow-auto from global;
+    /* The Body is itself a grid container for its children. */
+    composes: flex from global;
+    composes: px-8 from global;
+}
+.contents {
+    composes: w-full from global;
+}
+.dialog-body--container {
+    max-width: 1074px;
+}
+.header {
+    composes: h-[3.5rem] from global;
+    composes: pl-4 from global;
+    composes: pr-3 from global;
+    composes: py-0 from global;
+
+    /* The Header is itself a grid container for its children. */
+    composes: gap-x-xs from global;
+    composes: grid from global;
+    composes: grid-cols-autoLast from global;
+    composes: grid-flow-col from global;
+    composes: items-center from global;
+}

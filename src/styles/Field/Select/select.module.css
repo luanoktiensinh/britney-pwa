@@ -1,0 +1,7 @@
+
+.input {
+    composes: input from 'src/styles/Field/TextInput/textInput.module.css';
+}
+.input_error {
+    composes: input_error from 'src/styles/Field/TextInput/textInput.module.css';
+}

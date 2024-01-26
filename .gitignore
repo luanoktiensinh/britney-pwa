@@ -1,0 +1,40 @@
+.idea
+.vscode
+coverage
+node_modules
+storybook-dist
+test-results
+dist
+.DS_Store
+.env
+build-stats.json
+npm-debug.log
+merged-schema*.json
+test-report.xml
+test-results.json
+yarn-error.log
+template.generated.html
+
+Backups
+Cache
+CachedData
+CachedProfilesData
+Code Cache
+Cookies
+Cookies-journal
+Crashpad
+DawnCache
+Dictionaries
+GPUCache
+Local Storage
+Network Persistent State
+Preferences
+Service Worker
+Session Storage
+TransportSecurity
+User
+WebStorage
+blob_storage
+databases
+logs
+machineid

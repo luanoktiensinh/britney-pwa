@@ -1,0 +1,32 @@
+{
+    "name": "Niteco PWA",
+    "short_name": "Niteco",
+    "start_url": "/",
+    "theme_color": "#1F39FF",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Niteco PWA Studio project",
+    "icons": [
+        {
+            "src": "/my-static-assets/briscoes-favicon.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/my-static-assets/briscoes-favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/my-static-assets/briscoes-favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/my-static-assets/briscoes-favicon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

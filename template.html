@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="<%= global.LOCALE %>" id="html-body" data-image-optimizing-origin="<%= process.env.IMAGE_OPTIMIZING_ORIGIN %>" data-media-backend="<%= global.MAGENTO_MEDIA_BACKEND_URL %>">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#ff6334">
+        <link rel="manifest" href="/my-static-assets/manifest.json">
+
+        <!--
+            Apple Specific Tags
+
+            To be included until Safari supports WebAppManifest
+            See Docs:
+            - https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+            - https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+        -->
+        <!--
+            Apple Icons for Homescreen
+            Sizes: https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/
+        -->
+        <link rel="apple-touch-icon" href="/my-static-assets/briscoes-favicon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/my-static-assets/briscoes-favicon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/my-static-assets/briscoes-favicon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/my-static-assets/briscoes-favicon.png">
+        <link rel="preconnect" href="<%= process.env.MAGENTO_BACKEND_URL %>">
+        <link rel="preload" href="<%= htmlWebpackPlugin.files.preloadedCss %>" as="style">
+        <!--
+            This following CSS is a copy of the css returned by Google's font API that
+            allows us to "skip" a network round trip.
+
+            CSS requests are _render_ blocking, while font requests are only _text_
+            blocking. By removing the link request we only wait for font request, to
+            shave off a few ms :)
+
+            The CSS below this comment is the response copied wholesale from Google's font
+            API. If you ever need to update it, get the response and replace what is below
+            this comment. Remember to replace the preload link above with the src URL!
+
+            Example API responses:
+            https://fonts.googleapis.com/css?family=Muli:400&display=swap
+            https://fonts.googleapis.com/css?family=Source+Serif+Pro:600&display=swap
+        -->
+        <style type="text/css">
+            /* latin */
+            @font-face {
+              font-family: 'Muli';
+              font-style: normal;
+              font-weight: 400;
+              font-display: swap;
+              src: url("/my-static-assets/fonts/muli-latin-400.woff") format('woff');
+            }
+            /* latin */
+            @font-face {
+              font-family: 'Muli';
+              font-style: normal;
+              font-weight: 600;
+              font-display: swap;
+              src: url("/my-static-assets/fonts/muli-latin-600.woff") format('woff');
+            }
+            /* latin */
+            @font-face {
+              font-family: 'Muli';
+              font-style: normal;
+              font-weight: 700;
+              font-display: swap;
+              src: url("/my-static-assets/fonts/muli-latin-700.woff") format('woff');
+            }
+            /* latin-ext */
+            @font-face {
+              font-family: 'Source Serif Pro';
+              font-style: normal;
+              font-weight: 600;
+              font-display: swap;
+              src: local('Source Serif Pro Semibold'), local('SourceSerifPro-Semibold'), url("/my-static-assets/fonts/source-serif-pro.woff2") format('woff2');
+            }
+        </style>
+    </head>
+    <body class="bg-body font-sans text-base text-colorDefault">
+        <div id="root"></div>
+
+        <!-- Fallback for when JavaScript is disabled. -->
+        <noscript>
+            <style>
+                .fallback-nojs {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                }
+                .fallback-nojs a {
+                    color: currentColor;
+                }
+                .fallback-closed {
+                    height: 40vh;
+                }
+                .fallback-heading {
+                    font-family: 'Source Serif Pro';
+                    font-weight: 600;
+                    padding-bottom: 16px;
+                    font-size: xx-large;
+                }
+                .fallback-message {
+                    font-family: 'Muli';
+                }
+                @media only screen and (max-width: 768px) {
+                  .fallback-heading {
+                    font-size: x-large;
+                  }
+                }
+            </style>
+            <div class="fallback-nojs">
+                <img class="fallback-closed" alt="JavaScript is disabled" src="/venia-static/veniaClosed.png">
+                <div class="fallback-heading">Oops! JavaScript is disabled</div>
+                <div class="fallback-message">
+                  To browse the Venia store,<br>
+                  <a href="https://www.enable-javascript.com">enable JavaScript in your browser.</a>
+                </div>
+            </div>
+        </noscript>
+        <!-- Inlined Data -->
+        {{#pageTypeNonce}}
+        <script nonce="{{pageTypeNonce}}">
+            try {
+                var INLINED_PAGE_TYPE = JSON.parse('{{pageType}}'.replace(/&quot;/g, '"'));
+            } catch(error) {}
+        </script>
+
+        {{#webpackChunks}}
+            <script type="text/javascript" src="/{{.}}"></script>
+        {{/webpackChunks}}
+        {{/pageTypeNonce}}
+        <!-- /Inlined Data -->
+    </body>
+</html>

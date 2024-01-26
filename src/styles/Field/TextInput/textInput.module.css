@@ -1,0 +1,23 @@
+.inputDefault {
+    composes: border from global;
+    composes: border-solid from global;
+    composes: text-[#707070] from global;
+    composes: h-12.5 from global;
+    composes: w-full from global;
+    composes: pl-3 from global;
+    composes: pr-2.5 from global;
+    composes: mb-[13px] from global;
+    composes: bg-white from global;
+    composes: focus_outline-none from global;
+    composes: focus_border-current from global;
+    composes: appearance-none from global;
+}
+.input {
+    composes: inputDefault;
+    composes: border-[#d9d9d9] from global;
+
+}
+.input_error {
+    composes: inputDefault;
+    composes: border-errors-500 from global;
+}
