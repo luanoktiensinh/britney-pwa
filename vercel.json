@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/media/:path*",
+      "destination": "https://pwa-integration-yee546y-7skfpbahl5qu2.us-4.magentosite.cloud/media/:path*"
+    },
+    {
+      "source": "/graphql/:path*",
+      "destination": "https://pwa-integration-yee546y-7skfpbahl5qu2.us-4.magentosite.cloud/graphql/:path*"
+    },
+    {
+      "source": "/static/:path*",
+      "destination": "https://pwa-integration-yee546y-7skfpbahl5qu2.us-4.magentosite.cloud/static/:path*"
+    }
+  ]
+}
