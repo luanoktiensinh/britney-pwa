@@ -13,9 +13,7 @@ import './main.scss';
 const isServer = !globalThis.document;
 
 // TODO: on the server, the http request should provide the origin
-const origin = isServer
-    ? process.env.MAGENTO_BACKEND_URL
-    : globalThis.location.origin;
+const origin = process.env.MAGENTO_BACKEND_URL;
 
 // on the server, components add styles to this set and we render them in bulk
 const styles = new Set();
