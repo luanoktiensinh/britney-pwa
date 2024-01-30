@@ -13,8 +13,8 @@
       "destination": "https://pwa-integration-yee546y-7skfpbahl5qu2.us-4.magentosite.cloud/static/:path*"
     },
     {
-      "source": "/:path*",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
