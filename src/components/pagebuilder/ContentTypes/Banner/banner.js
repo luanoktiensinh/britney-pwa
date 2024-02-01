@@ -19,6 +19,7 @@ import {
 const { matchMedia } = globalThis;
 const toHTML = str => ({ __html: str });
 const handleDragStart = event => event.preventDefault();
+const IMAGE_RATIO = 1.25;
 
 /**
  * Page Builder Banner component.
@@ -234,9 +235,15 @@ const Banner = props => {
         generateSrcset,
         generateUrl,
         resource: image,
-        type: 'image-product'
+        type: 'image-product',
+        ratio: IMAGE_RATIO
     });
     const { src: srcImage, sizes: sizesImage, srcSet: srcSetImage } = resourceImage;
+    const placeholderImage = resourceUrl(image, {
+        type: 'image-wysiwyg',
+        quality: 50,
+        width: 50
+    })
     let BannerFragment = (
         <div
             className={classes.wrapper}
@@ -255,6 +262,8 @@ const Banner = props => {
                     container: '',
                     image: 'w-full h-full object-cover'
                 }}
+                ratio={IMAGE_RATIO}
+                placeholder={placeholderImage}
                 loading={undefined}
             />
             {videoOverlay}

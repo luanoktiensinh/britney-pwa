@@ -6,7 +6,7 @@ import { useStyle } from '@magento/venia-ui/lib/classify.js';
 import defaultClasses from 'src/styles/Gallery/item.module.css';
 
 const PriceContent = props => {
-    const { productDetail, productPrice } = props;
+    const { productDetail, productPrice, isPDP = false } = props;
     const { __typename: productType } = productDetail;
 
     const {
@@ -43,10 +43,18 @@ const PriceContent = props => {
             currencyCode={priceSource.currency}
         />
     );
+    
+    const badgeContent = (
+        productDetail?.badges?.length ? 
+            <div className={`${classes.badgeContent} ${isPDP ? '' : classes.badgeContentPlp}`}>
+                {productDetail.badges[0].extra_text}
+            </div>
+            : null
+    )
 
     return isSaleOf ? (
         <Fragment>
-            <div className={productPrice ? classes.finalPricePdp : classes.finalPrice}>           
+            <div className={isPDP ? classes.finalPricePdp : classes.finalPrice}>           
                 <span>
                     <FormattedMessage
                         id={'galleryItem.specialPrice'}
@@ -68,6 +76,7 @@ const PriceContent = props => {
                     {regularPrice}
                 </span>
             </div>
+            {badgeContent}
         </Fragment>
     ) : (
         <Fragment>
@@ -84,17 +93,7 @@ const PriceContent = props => {
                     {simplePrice}
                 </strong>
             </div>
-            <div className={productPrice ? classes.invisiblePricePdp : classes.invisiblePrice}>
-                <span>
-                    <FormattedMessage
-                        id={'galleryItem.regularPrice'}
-                        defaultMessage={'Regular Price: '}
-                    />
-                </span>
-                <span className='ml-1'>
-                    {regularPrice}
-                </span>
-            </div>
+            {badgeContent}
         </Fragment>
     );
 };

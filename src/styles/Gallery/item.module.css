@@ -12,6 +12,11 @@
     margin-top: auto;
 }
 
+.imageContainer {
+    grid-area: main;
+    composes: ml-[1px] from global;
+}
+
 .name {
     composes: h-8 from global;
     overflow: hidden;
@@ -59,6 +64,42 @@
     composes: d-none from global;
 }
 
+.labelWrapper {
+    composes: absolute from global;
+    composes: bg-[#ffca04] from global;
+    composes: top-[72px] from global;
+    composes: left-0 from global;
+    composes: uppercase from global;
+    composes: w-full from global;
+    composes: text-[12px] from global;
+    composes: text-center from global;
+    composes: text-sm from global;
+    composes: text-black from global;
+    composes: leading-4 from global;
+    composes: z-10 from global;
+    composes: p-1 from global;
+}
+
+.labelWrapperPlp {
+    composes: !top-[32px] from global;
+}
+
+.labelWrapperPdpProductCarousel {
+    composes: !top-[40px] from global;
+}
+
+.badgeContent {
+    composes: color-[#005ea7] from global;
+    composes: text-[12px] from global;
+    composes: text-[#005ea7] from global;
+    composes: mt-4 from global;
+    composes: font-normal from global;
+}
+
+.badgeContentPlp {
+    composes: font-bold from global;
+}
+
 @media (max-width: 959px) {
     .finalPrice {
         margin-top: 8px;
@@ -68,5 +109,11 @@
     }
     .starIcons {
         margin-top: 8px;
+    }
+    .labelWrapper {
+        top: 68px;
+    }
+    .labelWrapperPlp {
+        top: 20px !important;
     }
 }

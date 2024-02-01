@@ -24,6 +24,7 @@ import StarIcons from '../Gallery/starIcons';
 import './rating-review.scss';
 import PriceContent from '../Gallery/priceContent';
 import ProductCarousel from '../carouselSlider/productCarousel';
+import BadgeLabel from '../Gallery/badgeLabel';
 
 const WishlistButton = React.lazy(() => import('@magento/venia-ui/lib/components/Wishlist/AddToListButton'));
 const Options = React.lazy(() => import('@magento/venia-ui/lib/components/ProductOptions'));
@@ -404,8 +405,8 @@ const ProductFullDetail = props => {
                 }
             </Fragment>
         )
-    }, [product, classes])
-    
+    }, [product, classes]);
+
     return (
         <Fragment>
             {breadcrumbs}
@@ -414,7 +415,9 @@ const ProductFullDetail = props => {
                 data-cy="ProductFullDetail-root"
             >
                 <section className={classes.imageCarousel}>
-                    <Carousel images={_mediaGalleryEntries} />
+                    <Carousel images={_mediaGalleryEntries}>
+                        <BadgeLabel productDetail={product} className={classes.labelWrapper}></BadgeLabel>
+                    </Carousel>
                 </section>
                 <section className="border-solid border-subtle border-t-0 border-r-0 border-b border-l-0 my-0 mx-sm px-0 py-xs leading-normal px-sm py-xs">
                     <h1
@@ -429,7 +432,7 @@ const ProductFullDetail = props => {
                         data-cy="ProductFullDetail-productPrice"
                         className="my-2 text-sm lg_text-base"
                     >
-                        <PriceContent productDetail={product} productPrice={productPrice}></PriceContent>
+                        <PriceContent productDetail={product} productPrice={productPrice} isPDP={true}></PriceContent>
                     </div>
                     {shortDescription}
                 </section>

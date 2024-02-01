@@ -33,6 +33,22 @@
     grid-area: title;
 }
 
+.labelWrapper {
+    composes: pdp-label-wrapper from global;
+    composes: absolute from global;
+    composes: bg-[#ffca04] from global;
+    composes: top-0 from global;
+    composes: left-[16px] from global;
+    composes: uppercase from global;
+    composes: text-[18px] from global;
+    composes: font-medium from global;
+    composes: text-black from global;
+    composes: leading-6 from global;
+    composes: z-10 from global;
+    composes: px-4 from global;
+    composes: py-2 from global;
+}
+
 .carouselContainer {
     composes: product-slider from global;
     composes: product-slider--medium from global;

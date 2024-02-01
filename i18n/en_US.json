@@ -297,6 +297,7 @@
     "orderDetails.billingInformationLabel": "Billing Information",
     "orderDetails.buyAgain": "Buy Again",
     "orderDetails.discount": "Discount",
+    "orderDetails.giftCard": "Gift Cards",
     "orderDetails.noShippingInformation": "No shipping information",
     "orderDetails.orderTotal": "Order Total",
     "orderDetails.paymentMethodLabel": "Payment Method",

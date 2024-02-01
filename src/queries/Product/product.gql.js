@@ -38,6 +38,11 @@ export const GET_PRODUCT_DETAIL_QUERY = gql`
                         }
                     }
                     sku
+                    badges {
+                        label
+                        extra_text
+                        type
+                    }
                     small_image {
                         url
                     }
@@ -65,6 +70,11 @@ export const GET_PRODUCT_DETAIL_QUERY = gql`
                         }
                     }
                     sku
+                    badges {
+                        label
+                        extra_text
+                        type
+                    }
                     small_image {
                         url
                     }
@@ -92,6 +102,11 @@ export const GET_PRODUCT_DETAIL_QUERY = gql`
                         }
                     }
                     sku
+                    badges {
+                        label
+                        extra_text
+                        type
+                    }
                     small_image {
                         url
                     }

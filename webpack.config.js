@@ -13,9 +13,7 @@ const {
     getAvailableStoresConfigData,
     getPossibleTypes
 } = graphQL;
-
 const { DefinePlugin } = webpack;
-// const { LimitChunkCountPlugin } = webpack.optimize;
 
 const getCleanTemplate = templateFile => {
     return new Promise(resolve => {
@@ -31,7 +29,7 @@ const getCleanTemplate = templateFile => {
 };
 
 module.exports = async env => {
-    const isDevelopment = env.mode === 'development';
+    const isDevelopment = env?.mode === 'development';
     /**
      * configureWebpack() returns a regular Webpack configuration object.
      * You can customize the build by mutating the object here, as in
@@ -93,6 +91,7 @@ module.exports = async env => {
             collapseWhitespace: true,
             removeComments: true
         },
+        scriptLoading: 'defer',
         templateParameters: (compilation, assets, options) => {
             return {
                 compilation: compilation,
@@ -103,7 +102,7 @@ module.exports = async env => {
                         css: assets.css,
                         js: assets.js,
                         chunks: assets.chunks,
-                        preloadedCss: '/css/client.css',
+                        preloadedCss: ['/css/client.css', '/css/tailwind.css'],
                     },
                     options: options
                 }
@@ -144,6 +143,10 @@ module.exports = async env => {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             ignoreOrder: true,
+            insert: function(linkTag) {
+                var isTailwindCss = linkTag.getAttribute('href') === '/css/tailwind.css'
+                document.head[isTailwindCss ? 'prepend': 'append'](linkTag);
+            },
             attributes: {
                 defer: ''
             }
@@ -250,6 +253,12 @@ module.exports = async env => {
         path: path.resolve(__dirname, './dist'),
     }
     Object.assign(config.optimization.splitChunks.cacheGroups, {
+        he: {
+            test: /[\\/]node_modules[\\/]he[\\/]?/,
+            chunks: 'all',
+            name: 'he',
+            priority: 40
+        },
         lodash: {
             test: /[\\/]node_modules[\\/]lodash[\\/]?/,
             chunks: 'all',
@@ -257,7 +266,7 @@ module.exports = async env => {
             priority: 40
         },
         react: {
-            test: /[\\/]node_modules[\\/](react|redux)[\\/]?/,
+            test: /[\\/]node_modules[\\/](react|react-dom|react-feather|react-redux|react-router-dom|redux|redux-actions|redux-thunk)[\\/]?/,
             chunks: 'all',
             name: 'react',
             priority: 40

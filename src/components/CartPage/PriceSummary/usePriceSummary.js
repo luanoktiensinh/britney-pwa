@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useCartContext } from '@magento/peregrine/lib/context/cart';
@@ -46,7 +46,7 @@ const flattenData = data => {
  * import { usePriceSummary } from '@magento/peregrine/lib/talons/CartPage/PriceSummary/usePriceSummary';
  */
 export const usePriceSummary = (props = {}) => {
-    const { isUpdating } = props;
+    const { isUpdating, setNeedToRefreshPayment } = props;
     const operations = mergeOperations(DEFAULT_OPERATIONS, props.operations);
     const { getPriceSummaryQuery } = operations;
 
@@ -65,12 +65,22 @@ export const usePriceSummary = (props = {}) => {
         },
         notifyOnNetworkStatusChange: true,
     });
+    const prevData = useRef(data);
 
     useEffect(() => {
         if(!isUpdating) {
             refetchPriceSummary();
         }
     }, [isUpdating])
+
+    useEffect(() => {
+        const {value: prevTotal} = prevData?.current?.cart?.prices?.grand_total || {};
+        const {value: currentTotal} = data?.cart?.prices?.grand_total || {};
+        if((prevTotal > 0 && currentTotal == 0) || (prevTotal == 0 && currentTotal > 0)) {
+            setNeedToRefreshPayment(true);
+        }
+        prevData.current = data;
+    }, [data])
 
     const handleProceedToCheckout = useCallback(() => {
         history.push('/checkout');

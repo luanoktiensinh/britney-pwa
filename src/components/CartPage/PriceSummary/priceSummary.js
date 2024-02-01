@@ -28,9 +28,9 @@ import LoadingIndicator from '@magento/venia-ui/lib/components/LoadingIndicator'
  * import PriceSummary from "@magento/venia-ui/lib/components/CartPage/PriceSummary";
  */
 const PriceSummary = props => {
-    const { isUpdating } = props;
+    const { isUpdating, setNeedToRefreshPayment } = props;
     const classes = useStyle(defaultClasses, props.classes);
-    const talonProps = usePriceSummary({isUpdating});
+    const talonProps = usePriceSummary({isUpdating, setNeedToRefreshPayment});
 
     const {
         handleProceedToCheckout,

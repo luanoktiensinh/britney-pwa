@@ -35,7 +35,7 @@ const IMAGE_WIDTH = 640;
  * @returns {React.Element} React carousel component that displays a product image
  */
 const ProductImageCarousel = props => {
-    const { images } = props;
+    const { images, children } = props;
     const { formatMessage } = useIntl();
     const talonProps = useProductImageCarousel({
         images,
@@ -129,6 +129,7 @@ const ProductImageCarousel = props => {
                     }
                 )}>
                     <div className={classNames(classes.carouselContainer, {[classes.carouselContainerDialog] : showLightBox})}>
+                        {children}
                         <AriaButton
                             className={`${classes.previousButton} pdp-carousel-btn`}
                             onPress={handlePrevious}

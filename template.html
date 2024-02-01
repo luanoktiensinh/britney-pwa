@@ -24,7 +24,8 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/my-static-assets/briscoes-favicon.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/my-static-assets/briscoes-favicon.png">
         <link rel="preconnect" href="<%= process.env.MAGENTO_BACKEND_URL %>">
-        <link rel="preload" href="<%= htmlWebpackPlugin.files.preloadedCss %>" as="style">
+        <link rel="preload" href="<%= htmlWebpackPlugin.files.preloadedCss[0] %>" as="style">
+        <link rel="preload" href="<%= htmlWebpackPlugin.files.preloadedCss[1] %>" as="style">
         <!--
             This following CSS is a copy of the css returned by Google's font API that
             allows us to "skip" a network round trip.

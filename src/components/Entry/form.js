@@ -45,7 +45,7 @@ const EntryForm = (props) => {
     const mainForm = (
         <>
             <h1 className="font-bold mb-4 text-lg text-center">{title}</h1>
-            <Form onSubmit={onSubmit} onChange={() => setSubmitSuccess(false)}>
+            <Form onSubmit={onSubmit} onChange={() => setSubmitSuccess(false)} autoComplete="off">
                 <div className="space-y-1.25">
                     {form}
                 </div>

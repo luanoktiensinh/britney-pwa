@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, Suspense } from 'react';
+import React, { Fragment, useEffect, Suspense, useState } from 'react';
 import { shape, string } from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { AlertCircle as AlertCircleIcon } from 'react-feather';
@@ -39,6 +39,7 @@ const errorIcon = <Icon src={AlertCircleIcon} size={20} />;
 const CheckoutPage = props => {
     const { classes: propClasses } = props;
     const { formatMessage } = useIntl();
+    const [needToRefreshPayment, setNeedToRefreshPayment] = useState(false);
     const talonProps = useCheckoutPage();
 
     const {
@@ -226,6 +227,9 @@ const CheckoutPage = props => {
                     resetShouldSubmit={resetReviewOrderButtonClicked}
                     setCheckoutStep={setCheckoutStep}
                     shouldSubmit={reviewOrderButtonClicked}
+                    isUpdating={isUpdating}
+                    needToRefreshPayment={needToRefreshPayment}
+                    setNeedToRefreshPayment={setNeedToRefreshPayment}
                 />
             ) : (
                 <h3 className={classes.payment_information_heading}>
@@ -317,7 +321,7 @@ const CheckoutPage = props => {
                         : '')
                 }
             >
-                <OrderSummary isUpdating={isUpdating} />
+                <OrderSummary isUpdating={isUpdating} setNeedToRefreshPayment={setNeedToRefreshPayment}/>
             </div>
         ) : null;
 

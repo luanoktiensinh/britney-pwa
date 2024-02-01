@@ -57,6 +57,11 @@ export const ProductDetailsFragment = gql`
             }
         }
         sku
+        badges {
+            label
+            extra_text
+            type
+        }
         image {
             url
             label

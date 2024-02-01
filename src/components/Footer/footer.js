@@ -19,6 +19,10 @@ import paymentImg8 from "src/images/payment/bris-brand-8.png";
 
 import { useQuery } from '@apollo/client';
 import GET_FOOTER_LINK from '../../queries/footer.gql';
+import(
+    /* webpackChunkName: 'footer' */
+    'src/styles/Footer/footer.scss'
+)
 
 const Footer = props => {
     const classes = useStyle(defaultClasses, props.classes);

@@ -1,9 +1,8 @@
-@import "styles/_colors.scss";
-@import "styles/_breakpoints.scss";
-@import "styles/_base.scss";
-@import "styles/_z-index.scss";
-@import "styles/_font-sizes.scss";
+@import "src/styles/common.scss";
 
+html {
+    font-size: 16px;
+}
 .btn-flat {
     background: none;
     border: none;
@@ -63,6 +62,24 @@
     .slick-slider {
         .slick-dots {
             position: relative;
+        }
+    }
+}
+
+[class*='products-carousel'],
+.product-slider {
+    .slick-track {
+        display: flex !important;
+    }
+    .slick-slide {
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+        flex-grow: 1;
+
+        & > div, & > div > div {
+            display: flex;
+            flex-grow: 1;
         }
     }
 }
@@ -194,134 +211,6 @@
     }
 }
 
-.footer {
-    background: $briscoes-primary;
-    color: $white;
-    font-size: 16px;
-    padding-top: 10px;
-    display: block;
-
-    &-link {
-        &__container {
-            .pagebuilder-column-line {
-                .pagebuilder-column {
-                    .group-item {
-                        margin-bottom: 1.5rem;
-                    }
-                }
-            }
-        }
-        &__wrapper {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        &__item {
-            width: 25%;
-            padding-right: 0.5rem;
-            margin-bottom: 1.5rem;
-            @media (max-width: 540px) {
-                width: 50%;
-            }
-    
-            h6 {
-                font-weight: 700;
-                margin-bottom: 1rem;
-            }
-            .footer-links {
-                display: grid;
-                gap: 12px;
-
-                a:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-    
-    [class*='footer-logo'] {
-        img[class*='image-placeholder'] {
-            display: none;
-        }
-    }
-
-    &-container {
-        margin: 0 auto;
-        @include respond-to-max($laptopSize) {
-            padding: 0 16px 16px;
-        }
-    }
-
-    &-wrapper {
-        border-top: 2px solid rgba(255,255,255,0.3);
-        padding-top: 40px;
-    }
-
-    &-curekids {
-
-        &__text {
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        &__img {
-            height: 30px;
-            width: 145px;
-            object-fit: contain;
-        }
-    }
-
-    &-copyright {
-        background-color: #072369;
-        padding: 22px 0;
-        font-size: 14px;
-
-        &__container {
-            display: flex;
-            padding: 0 16px;
-        }
-        &__legal {
-            display: flex;
-            li {
-                margin-left: 20px;
-                padding-left: 20px;
-                border-left: 1px solid #fff;
-            }
-        }
-        @include respond-to-max($laptopSize) {
-            &__container {
-                padding: 0 16px;
-                flex-wrap: wrap;
-                font-size: 12px;
-                p {
-                    margin-bottom: 10px;
-                }
-            }
-            &__legal {
-                li {
-                    margin-left: 0;
-                    padding: 0 20px 0 0;
-                    border-left: none;
-                }
-            }
-        }
-    }
-    &-payment {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 60px 0 30px;
-        flex-wrap: wrap;
-
-        img {
-            max-height: 26px;
-            object-fit: contain;
-            max-width: 115px;
-            margin: 25px 25px 0;
-        }
-        @include respond-to-max($desktopSize) {
-            margin: 20px 0;
-        }
-    }
-}
 
 .subscriber {
     text-align: center;
@@ -376,6 +265,7 @@
     }
     &__button {
         background-color: #072369;
+        color: #fff;
         height: 50px;
         margin: 34px 8px 0;
         min-width: 0;
@@ -597,6 +487,12 @@ input[type='checkbox']:focus {
 
 .pagebuilder-mobile-only {
     @media (min-width: $desktopSize) {
+        display: none;
+    }
+}
+
+.carousel-root-dialog {
+    .pdp-label-wrapper {
         display: none;
     }
 }

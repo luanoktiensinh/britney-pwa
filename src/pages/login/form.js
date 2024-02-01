@@ -16,7 +16,7 @@ const LoginForm = (props) => {
         <>
             <FormInput 
                 field='email'
-                autoComplete="false"
+                autoComplete="new-user-email"
                 placeholder='Email Address *'
                 validate={isRequired}
                 validateOnChange
@@ -25,7 +25,7 @@ const LoginForm = (props) => {
                 field='password'
                 placeholder='Password *'
                 type='password'
-                autoComplete="false"
+                autoComplete="new-password"
                 validate={isRequired}
                 validateOnChange
             />

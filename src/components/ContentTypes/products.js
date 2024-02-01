@@ -302,6 +302,11 @@ export const GET_PRODUCTS_BY_URL_KEY = gql`
                     }
                 }
                 sku
+                badges {
+                    label
+                    extra_text
+                    type
+                }
                 small_image {
                     url
                 }

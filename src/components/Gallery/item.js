@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Info } from 'react-feather';
 import { string, number, shape } from 'prop-types';
 import { Link } from 'react-router-dom';
-import Price from '@magento/venia-ui/lib/components/Price';
 import { UNCONSTRAINED_SIZE_KEY } from '@magento/peregrine/lib/talons/Image/useImage';
 import { useGalleryItem } from '@magento/peregrine/lib/talons/Gallery/useGalleryItem';
 import resourceUrl from '@magento/peregrine/lib/util/makeUrl';
@@ -19,6 +18,7 @@ import CompareGalleryButton from './compareGalleryButton';
 import AddToCartButton from '@magento/venia-ui/lib/components/Gallery/addToCartButton';
 import StarIcons from './starIcons';
 import PriceContent from './priceContent';
+import BadgeLabel from './badgeLabel';
 // eslint-disable-next-line no-unused-vars
 // import Rating from '@magento/venia-ui/lib/components/Rating';
 // The placeholder image is 4:5, so we should make sure to size our product
@@ -40,7 +40,7 @@ const GalleryItem = props => {
         isSupportedProductType
     } = useGalleryItem(props);
     const _wishlistButtonProps = wishlistButtonProps ? {...wishlistButtonProps, classes: addToListButtonClasses} : wishlistButtonProps;
-    const { storeConfig } = props;
+    const { storeConfig, productContentType } = props;
 
     const productUrlSuffix = storeConfig && storeConfig.product_url_suffix;
 
@@ -81,6 +81,16 @@ const GalleryItem = props => {
     //     <Rating rating={rating_summary} />
     // ) : null;
 
+    const getBadgeLabelClass = useMemo(() => {
+        let className = classes.labelWrapper;
+        if(productContentType === "plp") {
+            className += " " + classes.labelWrapperPlp;
+        } else if (productContentType === "pdp-product-carousel") {
+            className += " " + classes.labelWrapperPdpProductCarousel;
+        }
+        return className;
+    }, [productContentType]);
+
     return (
         <div data-cy="GalleryItem-root" className={classes.root} ref={itemRef}>
             <Link
@@ -89,6 +99,7 @@ const GalleryItem = props => {
                 to={productLink}
                 className={classes.images}
             >
+                <BadgeLabel productDetail={item} className={getBadgeLabelClass}></BadgeLabel>
                 <Image
                     alt={name}
                     classes={{

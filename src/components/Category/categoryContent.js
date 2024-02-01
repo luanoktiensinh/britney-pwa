@@ -178,7 +178,7 @@ const CategoryContent = props => {
         }
 
         const gallery = totalPagesFromData ? (
-            <Gallery items={items} />
+            <Gallery items={items} productContentType="plp" />
         ) : (
             <GalleryShimmer items={items} />
         );

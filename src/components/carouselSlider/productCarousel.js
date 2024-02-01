@@ -3,8 +3,9 @@ import { gql, useQuery } from '@apollo/client';
 import { arrayOf, bool, number, oneOf, shape, string } from 'prop-types';
 
 import { useStyle } from '@magento/venia-ui/lib/classify';
-import Gallery from '@magento/venia-ui/lib/components/Gallery';
-import Carousel from '@magento/pagebuilder/lib/ContentTypes/Products/Carousel/carousel';
+import SlickSlider from 'react-slick';
+import GalleryItem from '@magento/venia-ui/lib/components/Gallery/item';
+import { useCarousel } from '@magento/pagebuilder/lib/ContentTypes/Products/Carousel/useCarousel';
 import defaultClasses from '@magento/pagebuilder/lib/ContentTypes/Products/products.module.css';
 
 /**
@@ -142,6 +143,14 @@ const ProductCarousel = props => {
         ? classes.centerModeSmall
         : null;
 
+    const { storeConfig } = useCarousel();
+
+    const galleryItems = items.map((item, index) => {
+        return (
+            <GalleryItem key={index} item={item} storeConfig={storeConfig} productContentType="pdp-product-carousel" />
+        );
+    });
+
     return (
         <div
             style={dynamicStyles}
@@ -152,7 +161,7 @@ const ProductCarousel = props => {
                 centerModeSmallClass
             ].join(' ')}
         >
-            <Carousel settings={carouselSettings} items={items} />
+            <SlickSlider {...carouselSettings}>{galleryItems}</SlickSlider>;
         </div>
     );
 };
